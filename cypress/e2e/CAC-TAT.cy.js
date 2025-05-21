@@ -22,6 +22,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get("#firstName").type("Lucas");
     cy.get("#lastName").type("Orsi");
     cy.get("#email").type("lucasorsi");
+    cy.get('#open-text-area').type('text');
     cy.contains("button", "Enviar").click();
 
     cy.get(".error").should("be.visible");
@@ -34,6 +35,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get("#firstName").type("Lucas");
     cy.get("#lastName").type("Orsi");
     cy.get("#email").type("lucasorsi@mail.com");
+    cy.get('#open-text-area').type('text');
     cy.get("#phone-checkbox").check();
     cy.contains("button", "Enviar").click();
 
