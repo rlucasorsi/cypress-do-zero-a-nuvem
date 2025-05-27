@@ -175,7 +175,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.contains("h1", "CAC TAT - Política de Privacidade").should("be.visible");
   });
 
-  it("exibe e oculta as mensagens de sucesso e erro usando .invoke()", () => {
+  it( "exibe e oculta as mensagens de sucesso e erro usando .invoke()", () => {
     cy.get(".success")
       .should("not.be.visible")
       .invoke("show")
@@ -192,12 +192,9 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       .should("not.be.visible");
   });
 
-  it.only("preenche o campo da area do texto usando comando invoke", () => {
+  it("preenche o campo da area do texto usando comando invoke", () => {
     cy.get("#open-text-area")
-    .invoke(
-      "val",
-      "texto preenchendo campo com comando invoke"
-    )
-    .should('have.value', 'texto preenchendo campo com comando invoke')
+      .invoke("val", "texto preenchendo campo com comando invoke")
+      .should("have.value", "texto preenchendo campo com comando invoke");
   });
 });
