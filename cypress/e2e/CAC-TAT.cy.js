@@ -38,7 +38,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
 
     cy.get(".error").should("not.be.visible");
   });
-  it("Verifica não digitação de texto no campo 'telefone'", () => {
+  it("verifica não digitação de texto no campo 'telefone'", () => {
     cy.get("#phone").type("text").should("have.value", "");
   });
 
@@ -175,7 +175,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.contains("h1", "CAC TAT - Política de Privacidade").should("be.visible");
   });
 
-  it( "exibe e oculta as mensagens de sucesso e erro usando .invoke()", () => {
+  it("exibe e oculta as mensagens de sucesso e erro usando .invoke()", () => {
     cy.get(".success")
       .should("not.be.visible")
       .invoke("show")
@@ -196,5 +196,23 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get("#open-text-area")
       .invoke("val", "texto preenchendo campo com comando invoke")
       .should("have.value", "texto preenchendo campo com comando invoke");
+  });
+
+  it("faz requisição HTTP", () => {
+    cy.request("https://cac-tat-v3.s3.eu-central-1.amazonaws.com/index.html")
+      .as("getRequest")
+      .its("status")
+      .should("be.equal", 200);
+    cy.get("@getRequest").its("statusText").should("be.equal", "OK");
+    cy.get("@getRequest").its("body").should("include", "CAC TAT");
+  });
+  it.only("encontrando o Gato", () => {
+    cy.get("#cat")
+      .invoke("show")
+      .should("be.visible")
+    cy.get('#title')
+      .invoke('text', 'CAT TAT')
+    cy.get('#subtitle')
+      .invoke('text', 'Eu gosto de gatos')
   });
 });
